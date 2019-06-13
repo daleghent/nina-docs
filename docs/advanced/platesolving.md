@@ -13,7 +13,7 @@ To plate solve an image you need to capture an image and use the Plate solve cur
 Before being able to plate solve N.I.N.A., any setup that the primary and blind solvers require must be done in accordance with their respective instructions.
 
 !!! tip
-    In the event that both the Primary and Blind plate solving applications fail to produce a result, please verify that your image is in focus and, if necessary, increase the exposure time or change the filter type to allow more stars to show.
+    In the event that both the Primary and Blind plate solving applications fail to produce a result, please verify that your image is in focus and, if necessary, increase the exposure time or change the filter type to allow more stars to be adequately exposed.
 
 To apply the plate solving results to your mount, you need to enable the Sync option and, if desired, tje Reslew To Target option in the Plate Solving panel. The former will synchronize your mount's notion of its pointing position to the position that the plate solver has determined is it pointed. The latter option will make N.I.N.A. slew your mount to the location where it was supposed to be in the first place. This cam allow this skipping of the star alignment process that is typically done during a mount's start-up process.
 
@@ -21,7 +21,7 @@ Plate solving is also utilized in the [Automated Meridian Flip](meridianflip.md)
 
 ## Plate Solving Software
 
-N.I.N.A. supports the most popular plate solving software suites available, each of which has its own benefits and drawbacks.
+N.I.N.A. supports the most popular plate solving software suites available, each of which has its own benefits and drawbacks. The following is a list of support plate solving software and their general characteristics.
 
 ### ASTAP
 Author: Han Kleijn  
