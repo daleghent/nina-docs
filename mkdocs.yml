@@ -3,6 +3,12 @@ site_name: Nighttime Imaging 'N' Astronomy
 nav:
     - Introduction: 'index.md'
     - Requirements: 'requirements.md'
+    - Quick Start:
+        - UI Overview: 'quickstart/uioverview.md'
+        - Connecting Your Equipment: 'quickstart/equipment.md'
+        - Finalizing Settings: 'quickstart/settings.md'
+        - Focusing: 'quickstart/focusing.md'
+        - Starting a Sequence: 'quickstart/sequence.md'
     - Tabs:
         - Overview: 'tabs/overview.md'
         - Equipment: 'tabs/equipment.md'
