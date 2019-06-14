@@ -4,6 +4,30 @@ Dithering is an important part of the modern image acquisition process. CMOS and
 
 Because dithering is an operation that must be coordinated with guiding (remember, the mount is being purposefully moved, albeit a few pixels in a direction, which guiding would reflexively try to counteract), the dithering operation is managed by PHD2 itself. N.I.N.A. just commmands PDH2 to execute a dither operation, and PHD2 informs N.I.N.A. with the operation is complete. Any required adjustments to guiding are automatically handled by PHD2. N.I.N.A. then resumes commanding normal exposures.
 
+## Dithering in N.I.N.A.
+
+N.I.N.A. offers three different ways to effect dither operations:
+
+1. Standard dithering through PHD2
+2. Synchronized dithering across multiple main cameras on the same mount, also through PHD2
+3. Built-in dithering, using N.I.N.A.'s "dummy" guider, for setups which lack guiding equipment
+
+The desired method of dithering is selected in the **Equipment > Guider** tab.
+
+### Standard PHD2 Dithering
+
+This is the typical scenario for most users. The user has a single main camera, a guide camera, and is using PHD2 for guiding. At the intervals configured in the sequence, N.I.N.A. will pause operations with the main camera and signal PHD2 to begin a dither operation. Photography resumes when the dither operation is completed.
+
+### Synchronized Dithering with PHD2
+
+Multiple imaging telescopes and cameras in addition to a single guide camera has become a common configuration. N.I.N.A. can be used to control these kinds of setups through multiple instances of the application. One instance controls the mount, guiding, and one of the main cameras. Additional instances of N.I.N.A. control each additional main imaging camera present and communicate their actions to the master instance of N.I.N.A. This coordination is automatically set up in the background when multiple instances of N.I.N.A are started. This configuration poses an issue for dithering because, without coordination between the multiple instances of N.I.N.A., a dither operation may be initiated while one of the other main cameras still is busy exposing.
+
+To manage this, a dither operation will be coordinated with PHD2 so that it happens when none of the imaging cameras are exposing. N.I.N.A. developer Stanley Demont [describes Synchronized Dithering](//youtu.be/edYcKUPEEAU?t=546) in his N.I.N.A. 1.8 feature overview video.
+
+### Built-in Dithering
+
+There are cases where there is no guiding equipment in use, and thus no PHD2, but where dithering is still desireable. Examples of configuraions like this usually include small, portable setups that have a main camera and telescope or lens, but no guiding. In cases like this, N.I.N.A. can still effect dithering operations, but on its own through its **Direct Guider** facility. Once activated, dithering operations become available in the Sequence.
+
 ## Requirements
 
 N.I.N.A. supports dithering using its direct communication with PHD2 and makes it easy to set up as a part of a sequence. There are a few prerequisites to dither during a sequence:
@@ -37,7 +61,7 @@ An explanation of the two most important dithering-related settings follows:
 
 ### Settings in Sequences
 
-Initiating dithering during the course of a running sequence is simple. Dithering operations can be activated for each step in a sequence, and be initiated every *Nth* frame in each step. That is, if a step in a sequence specifies that 20 exposures be taken with a dither operation every second exposure, two normal exposures will be taken, a dither operation performed, and then the next two exposures will be taken, etcetera. N.I.N.A. manages these operations itself in conjunction with PHD2 and the process is entirely hands-off.
+Regardless of the dither method in use, initiating dithering during the course of a running sequence is simple. Dithering operations can be activated for each step in a sequence, and be initiated every *Nth* frame in each step. That is, if a step in a sequence specifies that 20 exposures be taken with a dither operation every second exposure, two normal exposures will be taken, a dither operation performed, and then the next two exposures will be taken, etcetera. N.I.N.A. manages these operations itself in conjunction with PHD2 and the process is entirely hands-off.
 
 ![N.I.N.A. Dithering in Sequences](../images/advanced/dithering3.png)
 
