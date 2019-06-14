@@ -2,7 +2,7 @@
 
 Dithering is an important part of the modern image acquisition process. CMOS and CCD sensors suffer from various types of electronic noise, such as fixed-pattern noise, and defects such hot and cold pixels. Photons of light from stellar objects fall onto the sensor and will effectively be lost if the photon falls on a dead or hot pixel. The act of dithering is a commanded move of the mount between successive exposures that very slightly alters, on the pixel scale, where photons fall on the sensor. This means that one exposure can capture light (ie, data) from an object where that same light fell on a dead or hot pixel in the previous exposure. Image alignment issues are easily handled by most astronomy stacking and image post-processing applications.
 
-Because dithering is an operation that must be coordinated with guiding (remember, the mount is being purposefully moved, albeit a few pixels in a direction, which guiding would reflexively try to counteract), the dithering operation is managed by PHD2 itself. N.I.N.A. just commmands PDH2 to execute a dither operation, and PHD2 informs N.I.N.A. with the operation is complete. Any required adjustments to guiding are automatically handled by PHD2. N.I.N.A. then resumes commanding normal exposures.
+Because dithering is an operation that must be coordinated with guiding (remember, the mount is being purposefully moved by a few pixels, which guiding would reflexively attempt to counteract), the dithering operation is managed by PHD2 itself. The process is simple. N.I.N.A. suspends imaging and commmands PDH2 to execute a dither operation. PHD2 performs the dither, and then informs N.I.N.A. when the operation is complete. Any required adjustments to guiding are automatically handled by PHD2. N.I.N.A. then resumes commanding normal exposures. Normally, a dither operation takes a few tens of seconds (at most) to complete.
 
 ## Dithering in N.I.N.A.
 
@@ -10,7 +10,7 @@ N.I.N.A. offers three different ways to effect dither operations:
 
 1. Standard dithering through PHD2
 2. Synchronized dithering across multiple main cameras on the same mount, also through PHD2
-3. Built-in dithering, using N.I.N.A.'s "dummy" guider, for setups which lack guiding equipment
+3. Built-in dithering using N.I.N.A.'s Direct Guider function
 
 The desired method of dithering is selected in the **Equipment > Guider** tab.
 
@@ -26,7 +26,7 @@ To manage this, a dither operation will be coordinated with PHD2 so that it happ
 
 ### Built-in Dithering
 
-There are cases where there is no guiding equipment in use, and thus no PHD2, but where dithering is still desireable. Examples of configuraions like this usually include small, portable setups that have a main camera and telescope or lens, but no guiding. In cases like this, N.I.N.A. can still effect dithering operations, but on its own through its **Direct Guider** facility. Once activated, dithering operations become available in the Sequence.
+There are cases where there is no guiding equipment in use, and thus no PHD2, but where dithering is still desireable. Examples of configuraions like this usually include small, portable setups that have a main camera and telescope or lens, but no guiding. In cases like this, N.I.N.A. can still effect dithering operations, but on its own through its **Direct Guider** facility. Once activated, dithering operations become available in the Sequence and are effected by N.I.N.A. directly.
 
 ## Requirements
 
